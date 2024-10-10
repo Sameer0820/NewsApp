@@ -23,8 +23,9 @@ const News = (props, { country = 'in', pageSize = 8, category = 'general' }) => 
         props.setProgress(30);
         let parsedData = await data.json()
         props.setProgress(70);
-        setArticles(parsedData.articles)
-        setTotalResults(parsedData.totalResults)
+        setArticles(parsedData?.articles)
+        setTotalResults(parsedData?.totalResults)
+        console.log(parsedData)
         setLoading(false)
         props.setProgress(100);
     } 
@@ -48,16 +49,16 @@ const News = (props, { country = 'in', pageSize = 8, category = 'general' }) => 
             <h1 className='text-center' style={{ margin: '35px 0px', marginTop:"90px" }}>NewsBrief - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
             {loading && <Spinner />}
             <InfiniteScroll
-                dataLength={articles.length}
+                dataLength={articles?.length}
                 next={fetchMoreData}
-                hasMore={articles.length !== totalResults}
+                hasMore={articles?.length !== totalResults}
                 loader={<Spinner />}>
                 <div className="container">
                     <div className="row">
                         {articles.map((element) => {
-                            if(element.title !== "[Removed]"){
-                                return <div className="col-md-4" key={element.title}>
-                                <NewsItem title={element.title ? element.title : ""} author={element.author} date={element.publishedAt} source={element.source.name} description={element.description ? element.description : ""} newsUrl={element.url} imageUrl={element.urlToImage ? element.urlToImage : "https://png.pngtree.com/thumb_back/fh260/background/20220216/pngtree-news-concept-daily-news-on-wall-background-age-headline-grunge-background-photo-image_23741784.jpg"} />
+                            if(element?.title !== "[Removed]"){
+                                return <div className="col-md-4" key={element?.title}>
+                                <NewsItem title={element?.title ? element.title : ""} author={element?.author} date={element?.publishedAt} source={element?.source.name} description={element?.description ? element?.description : ""} newsUrl={element?.url} imageUrl={element?.urlToImage ? element?.urlToImage : "https://png.pngtree.com/thumb_back/fh260/background/20220216/pngtree-news-concept-daily-news-on-wall-background-age-headline-grunge-background-photo-image_23741784.jpg"} />
                             </div>
                             }else{
                                 return null;
