@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import NewsItem from './NewsItem'
-import Spinner from './Spinner'
+import NewsItem from './NewsItem.js'
+import Spinner from './Spinner.js'
 import PropTypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroll-component"
 
 
-const News = (props) => {
+const News = (props, { country = 'in', pageSize = 8, category = 'general' }) => {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
@@ -66,12 +66,6 @@ const News = (props) => {
             </InfiniteScroll>
         </>
     )
-}
-
-News.defaultProps = {
-    county: 'in',
-    pageSize: 8,
-    category: 'general',
 }
 
 News.propTypes = {
