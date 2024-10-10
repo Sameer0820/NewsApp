@@ -55,9 +55,11 @@ const News = (props) => {
                 <div className="container">
                     <div className="row">
                         {articles.map((element) => {
-                            return <div className="col-md-4" key={element.url}>
-                                <NewsItem title={element.title ? element.title : ""} author={element.author} date={element.publishedAt} source={element.source.name} description={element.description ? element.description : ""} newsUrl={element.url} imageUrl={element.urlToImage ? element.urlToImage : "https://media.istockphoto.com/photos/abstract-digital-news-concept-picture-id1290904409"} />
+                            if(element.title !== "[Removed]"){
+                                return <div className="col-md-4" key={element.title}>
+                                <NewsItem title={element.title ? element.title : ""} author={element.author} date={element.publishedAt} source={element.source.name} description={element.description ? element.description : ""} newsUrl={element.url} imageUrl={element.urlToImage ? element.urlToImage : "https://png.pngtree.com/thumb_back/fh260/background/20220216/pngtree-news-concept-daily-news-on-wall-background-age-headline-grunge-background-photo-image_23741784.jpg"} />
                             </div>
+                            }
                         })}
                     </div>
                 </div>
